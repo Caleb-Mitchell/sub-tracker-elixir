@@ -18,6 +18,7 @@ defmodule SubTrackerElixirWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/instruments", InstrumentController, :instruments
   end
 
   # Other scopes may use custom stacks.
