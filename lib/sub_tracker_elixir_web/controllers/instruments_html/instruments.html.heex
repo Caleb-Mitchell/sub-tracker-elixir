@@ -1,52 +1,24 @@
-<%!-- <section>
-  <h2>Hello World, from Phoenix!</h2>
-</section> --%>
-
 <h5>(Click an instrument name to see a list of the musicians in the database who play it)</h5>
-
-
-<%!--
-<ul>
-  <%= for instrument_name <- @instruments_page_list do %>
-    <li>
-      <a href="/instruments/%= instrument_name">
-        <%= instrument_name %>
-      </a>
-    </li>
-  <% end %>
-</ul>
-
-<%!--
+<!-- <p><%= inspect @instrument_list %></p> -->
 <ul class="instrument-list">
-  <%= for instrument <- @instruments_page_list do %>
+  <%= for instrument <- @instrument_list do %>
     <li class="instrument-list-item">
-      <a class="instrument-name" href="/instruments/<%= instrument[:id] %>">
-    </li>
-  <% end %>
-</ul>
---%>
-
-<%!--
-<ul class="instrument-list">
-  <% @instruments_page_list.each do |instrument| %>
-    <li class="instrument-list-item">
-      <a class="instrument-name" href="/instruments/<%= instrument[:id] %>">
+      <a clas="instrument-name" href={"/instruments/#{instrument[:id]}"}>
         <%= instrument[:name] %>
       </a>
-
-      <a class="edit-button" href="/instruments/<%= instrument[:id] %>/edit">
-        <input type="submit" value="Edit">
+      <a class="edit-button" href={"/instruments/#{instrument[:id]}/edit"}>
+        <input type="submit" value="Edit" />
       </a>
 
-      <form action="/instruments/<%= instrument[:id] %>/destroy" method="post">
-        <input type="submit" value="Delete">
+      <form action="instruments/#{instrument[:id]}/destroy" method="post">
+        <input type="submit" value="Delete" />
       </form>
     </li>
   <% end %>
 </ul>
---%>
 
-<%!-- <% if pagination_necessary?(@instrument_count) %>
+<%!--
+<% if pagination_necessary?(@instrument_count) %>
   <nav class="pagination-nav">
 
     <% if first_page? %>
@@ -76,6 +48,8 @@
   </nav>
 <% end %>
 
+--%>
+
 <a href="/instruments/new">
-  <input class="form-button" type="submit" value="Add New Instrument">
-</a>--%>
+  <input class="form-button" type="submit" value="Add New Instrument" />
+</a>
