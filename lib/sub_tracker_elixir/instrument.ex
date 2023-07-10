@@ -3,6 +3,6 @@ defmodule SubTrackerElixir.Instrument do
 
   schema "instruments" do
     field :name, :string
-    has_many :musicians, Musician
+    has_many :musician, Musician
   end
 end
