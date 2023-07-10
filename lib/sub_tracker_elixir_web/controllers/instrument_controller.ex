@@ -1,27 +1,28 @@
 defmodule SubTrackerElixirWeb.InstrumentController do
   use SubTrackerElixirWeb, :controller
-  # import Ecto.Query
-  # import Ecto.Queryable
-  # import Ecto.Association
+
+  import Ecto.Query
 
   def instruments(conn, _params) do
-    # render(conn, :instruments, page_title: "Instrument List")
-    # conn
-    # |> assign(:page_title, "Instrument List")
-    # select * from instruments, order by name
+    query =
+      from i in "instruments",
+        distinct: true,
+        left_join: m in "musicians",
+        on: i.id == m.instrument_id,
+        order_by: i.name,
+        select: {i.name, i.id}
 
-    # |> assign(:instruments_page_list, Enum.map(SubTrackerElixir.Instrument |> SubTrackerElixir.Repo.all, &Map.from_struct/1))
-    # |> assign(:instruments_page_list, Enum.map(SubTrackerElixir.Instrument |> SubTrackerElixir.Repo.all(), &(&1.name)))
-    # |> assign(:instruments_page_list,
-    #   SubTrackerElixir.Instrument
-    #     |> SubTrackerElixir.Repo.all
-    #     |> Repo.preload([:musicians])
-    # )
+    instrument_list =
+      SubTrackerElixir.Repo.all(query)
+      |> Enum.map(fn {name, id} -> %{name: name, id: id} end)
 
-    instrument_list = SubTrackerElixir.Repo.all(SubTrackerElixir.Instrument)
-      |> SubTrackerElixir.Repo.preload(:musicians)
+    instrument_count = length(instrument_list)
 
-    render(conn, page_title: "Instrument List", instrument_page_list: instrument_list)
+    render(conn,
+      page_title: "Instrument List",
+      instrument_list: instrument_list,
+      instrumnet_count: instrument_count
+    )
   end
 
   # here is what i need to have access to via `assigns` to display
