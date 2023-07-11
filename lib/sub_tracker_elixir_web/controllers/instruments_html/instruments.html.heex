@@ -26,19 +26,21 @@
     <% else %>
       <a href="/instruments?page=<%= @page_num.to_i - 1 %>">previous</a>
     <% end %>
+--%>
 
-    <ul class="pagination-list">
-      <% (@min_page..@max_page).each do |page_num| %>
-        <a href="/instruments?page=<%= page_num %>">
-          <% if page_num == @page_num.to_i %>
-            <li class="current-page"><%= page_num %></li>
-          <% else %>
-            <li><%= page_num %></li>
-          <% end %>
-        </a>
+<ul class="pagination-list">
+  <%= for page_num <- @min_page..@max_page do %>
+    <a href="/instruments?page=#{page_num}">
+      <%= if page_num == @page_num do %>
+        <li class="current-page"><%= page_num %></li>
+      <% else %>
+        <li><%= page_num %></li>
       <% end %>
-    </ul>
+    </a>
+  <% end %>
+</ul>
 
+<%!--
     <% if last_page?(@last_page) %>
       <a class="disabled">next</a>
     <% else %>
