@@ -5,7 +5,7 @@ defmodule SubTrackerElixir.Instrument do
 
   schema "instruments" do
     field :name, :string
-    has_many :musician, Musician
+    has_many :musician, SubTrackerElixir.Musician
   end
 
   @num_pages_visible 5
@@ -36,7 +36,7 @@ defmodule SubTrackerElixir.Instrument do
   def find_pagination_min_page(current_page, last_page) do
     cond do
       current_page <= div(@num_pages_visible, 2) ->
-        # TODO: does current page need to be converted to a string?
+        # TODO: does current page need to be converted to a string
         1
 
       current_page >= last_page - div(@num_pages_visible, 2) ->

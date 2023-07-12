@@ -5,6 +5,6 @@ defmodule SubTrackerElixir.Musician do
     field :name, :string
     field :phone_number, :string
     field :email_address, :string
-    belongs_to :instrument, Instrument
+    belongs_to :instrument, SubTrackerElixir.Instrument
   end
 end
