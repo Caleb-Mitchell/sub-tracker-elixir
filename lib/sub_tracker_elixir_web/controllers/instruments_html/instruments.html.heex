@@ -1,7 +1,8 @@
 <h5>(Click an instrument name to see a list of the musicians in the database who play it)</h5>
-<!-- <p><%= inspect @instrument_list %></p> -->
+
 <ul class="instrument-list">
-  <%= for instrument <- @instrument_list do %>
+
+  <%= for instrument <- @instrument_page_list do %>
     <li class="instrument-list-item">
       <a clas="instrument-name" href={"/instruments/#{instrument[:id]}"}>
         <%= instrument[:name] %>
@@ -15,42 +16,40 @@
       </form>
     </li>
   <% end %>
+
 </ul>
 
-<%!--
-<% if pagination_necessary?(@instrument_count) %>
+<%= if SubTrackerElixir.Instrument.pagination_necessary?(@instrument_count) do %>
   <nav class="pagination-nav">
 
-    <% if first_page? %>
+    <%= if SubTrackerElixir.Instrument.first_page?(@page_num) do %>
       <a class="disabled">previous</a>
     <% else %>
-      <a href="/instruments?page=<%= @page_num.to_i - 1 %>">previous</a>
+      <a href={"/instruments?page=#{@page_num - 1}"}>previous</a>
     <% end %>
---%>
 
-<ul class="pagination-list">
-  <%= for page_num <- @min_page..@max_page do %>
-    <a href="/instruments?page=#{page_num}">
-      <%= if page_num == @page_num do %>
-        <li class="current-page"><%= page_num %></li>
-      <% else %>
-        <li><%= page_num %></li>
+
+    <ul class="pagination-list">
+      <%= for page_num <- @min_page..@max_page do %>
+        <a href={"/instruments?page=#{page_num}"}>
+          <%= if page_num == @page_num do %>
+            <li class="current-page"><%= page_num %></li>
+          <% else %>
+            <li><%= page_num %></li>
+          <% end %>
+        </a>
       <% end %>
-    </a>
-  <% end %>
-</ul>
+    </ul>
 
-<%!--
-    <% if last_page?(@last_page) %>
+    <%= if SubTrackerElixir.Instrument.last_page?(@page_num, @last_page) do %>
       <a class="disabled">next</a>
     <% else %>
-      <a href="/instruments?page=<%= @page_num.to_i + 1 %>">next</a>
+      <a href={"/instruments?page=#{@page_num + 1}"}>next</a>
     <% end %>
 
   </nav>
 <% end %>
 
---%>
 
 <a href="/instruments/new">
   <input class="form-button" type="submit" value="Add New Instrument" />
