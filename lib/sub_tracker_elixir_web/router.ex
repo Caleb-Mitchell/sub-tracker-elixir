@@ -20,9 +20,11 @@ defmodule SubTrackerElixirWeb.Router do
     get "/", InstrumentController, :home
     get "/instruments", InstrumentController, :index
     get "/instruments/new", InstrumentController, :new
+    get "/instruments/:id/edit", InstrumentController, :edit
 
     post "/instruments", InstrumentController, :create
     post "/instruments/:id/delete", InstrumentController, :delete
+    post "/instruments/:id/update", InstrumentController, :update
   end
 
   # convention

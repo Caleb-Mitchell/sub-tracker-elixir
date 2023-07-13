@@ -1,11 +1,10 @@
 <fieldset class="insert-form">
-  <h3>Add Instrument</h3>
-  <form method="post" action="/instruments">
+  <form method="post" action={"/instruments/#{@instrument_id}/update"}>
     <input type="hidden" name="_csrf_token" value={"#{Plug.CSRFProtection.get_csrf_token()}"} />
     <label>
-      Name: <input type="text" name="instrument_name" />
+      Name: <input type="text" name="instrument_name" value={"#{@instrument_name}"} />
     </label>
-    <input type="submit" value="Add Instrument" />
+    <input type="submit" value="Save Name" />
   </form>
 </fieldset>
 

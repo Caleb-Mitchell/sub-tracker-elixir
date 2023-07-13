@@ -1,5 +1,6 @@
 defmodule SubTrackerElixir.Instrument do
   use Ecto.Schema
+  import Ecto.Changeset
 
   import Ecto.Query
 
@@ -33,9 +34,22 @@ defmodule SubTrackerElixir.Instrument do
     |> Enum.map(fn {name, id} -> %{name: name, id: id} end)
   end
 
+  def load_instrument(instrument_id) do
+    SubTrackerElixir.Repo.get!(SubTrackerElixir.Instrument, instrument_id)
+  end
+
   def add_instrument(instrument_name) do
     %SubTrackerElixir.Instrument{name: instrument_name}
     |> SubTrackerElixir.Repo.insert()
+  end
+
+  def update_instrument(instrument_id, instrument_name) do
+    # sql = "UPDATE instruments SET name = $1 WHERE id = $2"
+    # query(sql, new_name, id)
+
+    instrument = SubTrackerElixir.Repo.get!(SubTrackerElixir.Instrument, instrument_id)
+    changeset = change(instrument, %{name: instrument_name})
+    SubTrackerElixir.Repo.update(changeset)
   end
 
   def delete_instrument(instrument_id) do

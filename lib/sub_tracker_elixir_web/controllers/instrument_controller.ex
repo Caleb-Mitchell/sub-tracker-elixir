@@ -30,6 +30,23 @@ defmodule SubTrackerElixirWeb.InstrumentController do
     )
   end
 
+  def edit(conn, %{"id" => id}) do
+    instrument = Instrument.load_instrument(id)
+
+    render(conn,
+      page_title: "Update Instrument Name",
+      instrument_name: instrument.name,
+      instrument_id: instrument.id
+    )
+  end
+
+  def update(conn, %{"id" => id}) do
+    instrument_name = String.trim(conn.params["instrument_name"])
+    Instrument.update_instrument(id, instrument_name)
+
+    redirect(conn, to: ~p"/instruments")
+  end
+
   def new(conn, _params) do
     render(conn,
       page_title: "Add New Instrument"
@@ -42,25 +59,9 @@ defmodule SubTrackerElixirWeb.InstrumentController do
   end
 
   def create(conn, _params) do
-    # require_signed_in_user
-    #
-    # error = error_for_instrument(instrument_name)
-    # if error
-    #   session[:error] = error
-    #   status 422
-    #   @title = "Add New Instrument"
-    #
-    #   erb :new_instrument
-    # else
-    #   @storage.add_instrument(instrument_name)
-    #   redirect "/instruments"
-    # end
-    # end
-
     instrument_name = String.trim(conn.params["instrument_name"])
-    IO.inspect("Words here!!")
-
     Instrument.add_instrument(instrument_name)
+
     redirect(conn, to: ~p"/instruments")
   end
 end
