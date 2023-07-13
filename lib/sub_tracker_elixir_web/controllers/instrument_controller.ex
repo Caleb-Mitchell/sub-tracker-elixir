@@ -1,8 +1,6 @@
 defmodule SubTrackerElixirWeb.InstrumentController do
   use SubTrackerElixirWeb, :controller
 
-  # alias Phoenix.HTML.Form
-
   alias SubTrackerElixir.Instrument
 
   def home(conn, _params) do
@@ -36,6 +34,11 @@ defmodule SubTrackerElixirWeb.InstrumentController do
     render(conn,
       page_title: "Add New Instrument"
     )
+  end
+
+  def delete(conn, %{"id" => id}) do
+    Instrument.delete_instrument(id)
+    redirect(conn, to: ~p"/instruments")
   end
 
   def create(conn, _params) do
