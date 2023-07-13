@@ -38,6 +38,11 @@ defmodule SubTrackerElixir.Instrument do
     |> SubTrackerElixir.Repo.insert()
   end
 
+  def delete_instrument(instrument_id) do
+    instrument = SubTrackerElixir.Repo.get!(SubTrackerElixir.Instrument, instrument_id)
+    SubTrackerElixir.Repo.delete(instrument)
+  end
+
   def find_item_count(instrument_list) do
     length(instrument_list)
   end
