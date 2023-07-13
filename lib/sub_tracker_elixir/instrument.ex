@@ -44,9 +44,6 @@ defmodule SubTrackerElixir.Instrument do
   end
 
   def update_instrument(instrument_id, instrument_name) do
-    # sql = "UPDATE instruments SET name = $1 WHERE id = $2"
-    # query(sql, new_name, id)
-
     instrument = SubTrackerElixir.Repo.get!(SubTrackerElixir.Instrument, instrument_id)
     changeset = change(instrument, %{name: instrument_name})
     SubTrackerElixir.Repo.update(changeset)
