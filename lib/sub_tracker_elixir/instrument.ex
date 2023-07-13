@@ -33,6 +33,11 @@ defmodule SubTrackerElixir.Instrument do
     |> Enum.map(fn {name, id} -> %{name: name, id: id} end)
   end
 
+  def add_instrument(instrument_name) do
+    %SubTrackerElixir.Instrument{name: instrument_name}
+    |> SubTrackerElixir.Repo.insert()
+  end
+
   def find_item_count(instrument_list) do
     length(instrument_list)
   end
