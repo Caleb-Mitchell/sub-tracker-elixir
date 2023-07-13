@@ -1,0 +1,14 @@
+<fieldset class="insert-form">
+  <h3>Add Instrument</h3>
+  <form method="post" action="/instruments">
+    <input type="hidden" name="_csrf_token" value={"#{Plug.CSRFProtection.get_csrf_token()}"}>
+    <label>
+      Name: <input type="text" name="instrument_name" />
+    </label>
+    <input type="submit" value="Add Instrument" />
+  </form>
+</fieldset>
+
+<a href="/instruments">
+  <input class="back-button" type="submit" value="Back To Instruments" />
+</a>

@@ -1,9 +1,15 @@
 defmodule SubTrackerElixirWeb.InstrumentController do
   use SubTrackerElixirWeb, :controller
 
+  # alias Phoenix.HTML.Form
+
   alias SubTrackerElixir.Instrument
 
-  def instruments(conn, _params) do
+  def home(conn, _params) do
+    redirect(conn, to: ~p"/instruments")
+  end
+
+  def index(conn, _params) do
     instrument_list = Instrument.list_instruments()
     instrument_count = Instrument.find_item_count(instrument_list)
 
@@ -24,5 +30,34 @@ defmodule SubTrackerElixirWeb.InstrumentController do
       page_num: page_num,
       last_page: last_page
     )
+  end
+
+  def new(conn, _params) do
+    render(conn,
+      page_title: "Add New Instrument"
+    )
+  end
+
+  def create(conn, _params) do
+    # require_signed_in_user
+    #
+    # error = error_for_instrument(instrument_name)
+    # if error
+    #   session[:error] = error
+    #   status 422
+    #   @title = "Add New Instrument"
+    #
+    #   erb :new_instrument
+    # else
+    #   @storage.add_instrument(instrument_name)
+    #   redirect "/instruments"
+    # end
+    # end
+
+    instrument_name = String.trim(conn.params["instrument_name"])
+    IO.inspect("Words here!!")
+
+    Instrument.add_instrument(instrument_name)
+    redirect(conn, to: ~p"/instruments")
   end
 end

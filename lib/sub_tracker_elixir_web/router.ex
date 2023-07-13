@@ -17,9 +17,21 @@ defmodule SubTrackerElixirWeb.Router do
   scope "/", SubTrackerElixirWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    get "/instruments", InstrumentController, :instruments
+    get "/", InstrumentController, :home
+    get "/instruments", InstrumentController, :index
+    get "/instruments/new", InstrumentController, :new
+
+    post "/instruments", InstrumentController, :create
   end
+
+  # convention
+  # index - renders a list of all items of the given resource type
+  # show - renders an individual item by ID
+  # new - renders a form for creating a new item
+  # create - receives parameters for one new item and saves it in a data store
+  # edit - retrieves an individual item by ID and displays it in a form for editing
+  # update - receives parameters for one edited item and saves the item to a data store
+  # delete - receives an ID for an item to be deleted and deletes it from a data store
 
   # Other scopes may use custom stacks.
   # scope "/api", SubTrackerElixirWeb do
