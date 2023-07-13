@@ -27,7 +27,7 @@ defmodule SubTrackerElixir.Instrument do
         order_by: i.name,
         select: {i.name, i.id},
         limit: @items_per_page,
-        offset: (@items_per_page * (^page_num - 1))
+        offset: @items_per_page * (^page_num - 1)
 
     SubTrackerElixir.Repo.all(query)
     |> Enum.map(fn {name, id} -> %{name: name, id: id} end)
