@@ -11,7 +11,8 @@
         <input type="submit" value="Edit" />
       </a>
 
-      <form action="instruments/#{instrument[:id]}/destroy" method="post">
+      <form action={"instruments/#{instrument[:id]}/delete"} method="post">
+        <input type="hidden" name="_csrf_token" value={"#{Plug.CSRFProtection.get_csrf_token()}"}>
         <input type="submit" value="Delete" />
       </form>
     </li>
