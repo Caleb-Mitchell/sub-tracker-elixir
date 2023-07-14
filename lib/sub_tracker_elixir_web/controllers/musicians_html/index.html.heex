@@ -1,0 +1,73 @@
+<%= unless Enum.empty?(@musician_list) do %>
+  <ul class="instrument-list">
+    <li class="musician-list-item list-categories">
+      <h4>Name</h4>
+      <h4>Phone Number</h4>
+      <h4>Email Address</h4>
+    </li>
+
+    <%= for musician <- @musician_list do %>
+      <li class="musician-list-item">
+        <p class="name"><%= musician[:name] %></p>
+        <p class="phone-number"><%= musician[:phone_number] %></p>
+        <p class="email-addr"><%= musician[:email_address] %></p>
+
+        <a
+          class="edit-button"
+          href={"/instruments/#{@instrument_id}/musicians/#{musician[:id]}/edit"}
+        >
+          <input type="submit" value="Edit" />
+        </a>
+
+        <form
+          action={"/instruments/#{@instrument_id}/musicians/#{musician[:id]}/destroy"}
+          method="post"
+        >
+          <input type="submit" value="Delete" />
+        </form>
+      </li>
+    <% end %>
+  </ul>
+
+  <%!--
+  <% if pagination_necessary?(@musician_count) %>
+    <nav class="pagination-nav">
+
+      <% if first_page? %>
+        <a class="disabled">previous</a>
+      <% else %>
+        <a href="/instruments/<%= @instrument_id %>?page=<%= @page_num.to_i - 1 %>">previous</a>
+      <% end %>
+
+      <ul class="pagination-list">
+        <% (@min_page..@max_page).each do |page_num| %>
+          <a href="/instruments/<%= @instrument_id %>?page=<%= page_num %>">
+            <% if page_num == @page_num.to_i %>
+              <li class="current-page"><%= page_num %></li>
+            <% else %>
+              <li><%= page_num %></li>
+            <% end %>
+          </a>
+        <% end %>
+      </ul>
+
+      <% if last_page?(@last_page) %>
+        <a class="disabled">next</a>
+      <% else %>
+        <a href="/instruments/<%= @instrument_id %>?page=<%= @page_num.to_i + 1 %>">next</a>
+      <% end %>
+
+    </nav>
+  <% end %>
+--%>
+<% else %>
+  <p>Sorry, no musicians in the database play <%= @current_instrument %>.</p>
+<% end %>
+
+<a href="/instruments">
+  <input class="form-button" type="submit" value="Back To Instruments" />
+</a>
+
+<a href={"/instruments/#{@instrument_id}/musicians/new"}>
+  <input class="form-button" type="submit" value="Add New Musician" />
+</a>
