@@ -54,10 +54,6 @@ defmodule SubTrackerElixir.Instrument do
     SubTrackerElixir.Repo.delete(instrument)
   end
 
-  def find_item_count(instrument_list) do
-    length(instrument_list)
-  end
-
   def load_page(page_num) do
     # TODO:add error validation later
     if page_num == nil do
