@@ -9,7 +9,7 @@ defmodule SubTrackerElixirWeb.InstrumentController do
 
   def index(conn, _params) do
     instrument_list = Instrument.list_instruments()
-    instrument_count = Instrument.find_item_count(instrument_list)
+    instrument_count = length(instrument_list)
 
     page_num = Instrument.load_page(conn.params["page"])
     instrument_page_list = Instrument.instruments_page(page_num)
