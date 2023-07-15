@@ -18,6 +18,7 @@ defmodule SubTrackerElixirWeb.Router do
     pipe_through :browser
 
     get "/", InstrumentController, :home
+
     get "/instruments", InstrumentController, :index
     get "/instruments/new", InstrumentController, :new
     get "/instruments/:id/edit", InstrumentController, :edit
@@ -27,6 +28,12 @@ defmodule SubTrackerElixirWeb.Router do
     post "/instruments/:id/update", InstrumentController, :update
 
     get "/instruments/:id", MusicianController, :index
+    get "/instruments/:instrument_id/musicians/new", MusicianController, :new
+    # get "/instruments/:instrument_id/musicians/:musician_id/edit", MusicianController, :edit
+
+    # post "/instruments/:instrument_id/musicians", MusicianController, :create
+    # post "/instruments/:instrment_id/musicians/:musician_id/delete", MusicianController, :delete
+    # post "/instruments/:instrument_id/update/:musician_id/update", MusicianController, :update
   end
 
   # convention

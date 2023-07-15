@@ -1,0 +1,37 @@
+<fieldset class="insert-form">
+  <h3>Add Musician</h3>
+  <form method="post" action={"/instruments/#{@instrument_id}/musicians/new"}>
+    <input type="hidden" name="_csrf_token" value={"#{Plug.CSRFProtection.get_csrf_token()}"} />
+    <div class="musician-inputs">
+      <label>
+        Name: <input type="text" name="musician_name" value={"#{@musician_name}"} />
+      </label>
+
+      <label>
+        Phone: <input type="text" name="musician_phone" value={"#{@musician_phone}"} />
+      </label>
+
+      <label>
+        Email: <input type="text" name="musician_email" value={"#{@musician_email}"} />
+      </label>
+
+      <label>
+        Instrument:
+        <select name="musician_instrument">
+          <option value={"#{@current_instrument}"} selected><%= @current_instrument %></option>
+          <%= for instrument <- @instrument_list do %>
+            <%= unless instrument[:name] == @current_instrument do %>
+              <option value={"#{instrument[:name]}"}><%= instrument[:name] %></option>
+            <% end %>
+          <% end %>
+        </select>
+      </label>
+
+    </div>
+    <input type="submit" value="Add Musician" />
+  </form>
+</fieldset>
+
+<a href="/instruments">
+  <input class="back-button" type="submit" value="Back To Instruments" />
+</a>
