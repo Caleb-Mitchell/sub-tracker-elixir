@@ -1,0 +1,51 @@
+<fieldset class="insert-form">
+  <h3>Update Musician: <%= @current_musician.name %></h3>
+  <form action={"/instruments/#{@instrument_id}/musicians/#{@musician_id}/update"} method="post">
+    <input type="hidden" name="_csrf_token" value={"#{Plug.CSRFProtection.get_csrf_token()}"} />
+    <div class="musician-inputs">
+      <label>
+        Name:
+        <input type="text" name="musician_name" value={"#{@new_name || @current_musician.name}"} />
+      </label>
+
+      <label>
+        Phone:
+        <input
+          type="text"
+          name="musician_phone"
+          value={"#{@new_phone || @current_musician.phone_number}"}
+        />
+      </label>
+
+      <label>
+        Email:
+        <input
+          type="text"
+          name="musician_email"
+          value={"#{@new_email || @current_musician.email_address}"}
+        />
+      </label>
+
+      <label>
+        Instrument:
+        <select name="musician_instrument">
+          <option value={"#{@current_instrument}"} selected><%= @current_instrument %></option>
+          <%= for instrument <- @instrument_list do %>
+            <%= unless instrument[:name] == @current_instrument do %>
+              <option value={"#{instrument[:name]}"}><%= instrument[:name] %></option>
+            <% end %>
+          <% end %>
+        </select>
+      </label>
+    </div>
+    <input type="submit" value="Save Musician Info" />
+  </form>
+</fieldset>
+
+<a href={"/instruments/#{@instrument_id}"}>
+  <input
+    class="form-button"
+    type="submit"
+    value={"Back To #{String.capitalize(@current_instrument)} List"}
+  />
+</a>

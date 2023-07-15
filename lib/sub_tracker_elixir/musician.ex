@@ -2,7 +2,7 @@ defmodule SubTrackerElixir.Musician do
   use Ecto.Schema
 
   import Ecto.Query
-  # import Ecto.Changeset
+  import Ecto.Changeset
 
   schema "musicians" do
     field :name, :string
@@ -26,6 +26,10 @@ defmodule SubTrackerElixir.Musician do
     end)
   end
 
+  def load_musician(musician_id) do
+    SubTrackerElixir.Repo.get!(SubTrackerElixir.Musician, musician_id)
+  end
+
   def musicians_page(page_num, instrument_id) do
     query =
       from m in "musicians",
@@ -39,5 +43,36 @@ defmodule SubTrackerElixir.Musician do
     |> Enum.map(fn {name, id, phone_number, email_address} ->
       %{name: name, id: id, phone_number: phone_number, email_address: email_address}
     end)
+  end
+
+  def add_musician(name, phone, email, instrument_id) do
+    musician = %SubTrackerElixir.Musician{
+      name: name,
+      phone_number: phone,
+      email_address: email,
+      instrument_id: instrument_id
+    }
+
+    IO.inspect(musician)
+    SubTrackerElixir.Repo.insert(musician)
+  end
+
+  def delete_musician(musician_id) do
+    musician = SubTrackerElixir.Repo.get!(SubTrackerElixir.Musician, musician_id)
+    SubTrackerElixir.Repo.delete(musician)
+  end
+
+  def update_musician(musician_id, name, phone, email, instrument_id) do
+    musician = SubTrackerElixir.Repo.get!(SubTrackerElixir.Musician, musician_id)
+
+    changeset =
+      change(musician, %{
+        name: name,
+        phone_number: phone,
+        email_address: email,
+        instrument_id: instrument_id
+      })
+
+    SubTrackerElixir.Repo.update(changeset)
   end
 end

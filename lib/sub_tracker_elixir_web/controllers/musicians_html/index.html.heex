@@ -23,6 +23,11 @@
           action={"/instruments/#{@instrument_id}/musicians/#{musician[:id]}/delete"}
           method="post"
         >
+          <input
+            type="hidden"
+            name="_csrf_token"
+            value={"#{Plug.CSRFProtection.get_csrf_token()}"}
+          />
           <input type="submit" value="Delete" />
         </form>
       </li>

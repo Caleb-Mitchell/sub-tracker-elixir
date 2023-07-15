@@ -29,14 +29,14 @@ defmodule SubTrackerElixirWeb.Router do
 
     get "/instruments/:id", MusicianController, :index
     get "/instruments/:instrument_id/musicians/new", MusicianController, :new
-    # get "/instruments/:instrument_id/musicians/:musician_id/edit", MusicianController, :edit
+    get "/instruments/:instrument_id/musicians/:musician_id/edit", MusicianController, :edit
 
-    # post "/instruments/:instrument_id/musicians", MusicianController, :create
-    # post "/instruments/:instrment_id/musicians/:musician_id/delete", MusicianController, :delete
-    # post "/instruments/:instrument_id/update/:musician_id/update", MusicianController, :update
+    post "/instruments/:instrument_id/musicians", MusicianController, :create
+    post "/instruments/:instrument_id/musicians/:musician_id/delete", MusicianController, :delete
+    post "/instruments/:instrument_id/musicians/:musician_id/update", MusicianController, :update
   end
 
-  # convention
+  # convention TODO: remove this
   # index - renders a list of all items of the given resource type
   # show - renders an individual item by ID
   # new - renders a form for creating a new item

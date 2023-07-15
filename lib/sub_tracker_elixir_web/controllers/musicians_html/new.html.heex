@@ -1,6 +1,6 @@
 <fieldset class="insert-form">
   <h3>Add Musician</h3>
-  <form method="post" action={"/instruments/#{@instrument_id}/musicians/new"}>
+  <form method="post" action={"/instruments/#{@instrument_id}/musicians"}>
     <input type="hidden" name="_csrf_token" value={"#{Plug.CSRFProtection.get_csrf_token()}"} />
     <div class="musician-inputs">
       <label>
@@ -26,7 +26,6 @@
           <% end %>
         </select>
       </label>
-
     </div>
     <input type="submit" value="Add Musician" />
   </form>

@@ -38,6 +38,17 @@ defmodule SubTrackerElixir.Instrument do
     SubTrackerElixir.Repo.get!(SubTrackerElixir.Instrument, instrument_id)
   end
 
+  def find_instrument_id(instrument_name) do
+    query =
+      from i in "instruments",
+        where: i.name == ^instrument_name,
+        select: {i.id}
+
+    SubTrackerElixir.Repo.all(query)
+    |> List.first()
+    |> elem(0)
+  end
+
   def add_instrument(instrument_name) do
     %SubTrackerElixir.Instrument{name: instrument_name}
     |> SubTrackerElixir.Repo.insert()
