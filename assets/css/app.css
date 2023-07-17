@@ -4,6 +4,24 @@
 
 /* This file is for your main application CSS */
 
+html {
+  background-color: #181a1b;
+  color: #e8e6e3;
+}
+
+input[type="text"],
+select {
+  border: 1.5px solid #373c3e;
+  border-radius: 0.2rem;
+  background-color: #2b2a33;
+  color: #e8e6e3;
+}
+
+li,
+a {
+  color: #e8e6e3;
+}
+
 body {
   width: 60%;
 }
@@ -36,7 +54,7 @@ label.pass {
 }
 
 a {
-  color: black;
+  /* color: black; */
   text-decoration: none;
 }
 
