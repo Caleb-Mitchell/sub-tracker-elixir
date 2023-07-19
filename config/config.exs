@@ -8,16 +8,21 @@
 import Config
 
 config :sub_tracker_elixir, SubTrackerElixir.Repo,
-  database: "sub_tracker_elixir_repo",
-  username: "user",
-  password: "pass",
-  hostname: "localhost"
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  pool_size: 10
 
-config :sub_tracker_elixir, SubTrackerElixir.Repo,
-  database: "sub_tracker_elixir_repo",
-  username: "user",
-  password: "pass",
-  hostname: "localhost"
+# config :sub_tracker_elixir, SubTrackerElixir.Repo,
+#   database: "sub_tracker_elixir_repo",
+#   username: "user",
+#   password: "pass",
+#   hostname: "localhost"
+#
+# config :sub_tracker_elixir, SubTrackerElixir.Repo,
+#   database: "sub_tracker_elixir_repo",
+#   username: "user",
+#   password: "pass",
+#   hostname: "localhost"
 
 config :sub_tracker_elixir,
   ecto_repos: [SubTrackerElixir.Repo]

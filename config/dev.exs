@@ -3,7 +3,7 @@ import Config
 # Connect to database
 config :sub_tracker_elixir, SubTrackerElixir.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("SUBTRACKER_DB_URL"),
+  url: System.get_env("DATABASE_URL"),
   pool_size: 10
 
 # Configure your database
