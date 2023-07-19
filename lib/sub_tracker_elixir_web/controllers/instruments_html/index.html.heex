@@ -3,7 +3,7 @@
 <ul class="instrument-list">
   <%= for instrument <- @instrument_page_list do %>
     <li class="instrument-list-item">
-      <a clas="instrument-name" href={"/instruments/#{instrument[:id]}"}>
+      <a class="instrument-name" href={"/instruments/#{instrument[:id]}"}>
         <%= instrument[:name] %>
       </a>
       <a class="edit-button" href={"/instruments/#{instrument[:id]}/edit"}>
