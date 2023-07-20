@@ -1,5 +1,7 @@
 # Sub Tracker
 
+Feel free to visit this work in progress at [https://sub-tracker-elixir.gigalixirapp.com](https://sub-tracker-elixir.gigalixirapp.com).
+
 ## Description
 
 A web application used to track substitute musicians (not sandwiches) that play
